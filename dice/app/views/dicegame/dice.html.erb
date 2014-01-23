@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+ <html>
+	<head>
+ 		<!-- Bootstrap CSS from bootswatch -->	
+	 	<link href="http://bootswatch.com/slate/bootstrap.css" rel="stylesheet">
+	</head>
+	 
+	<body>
+		<div class="text-left">
+			<div class="container">
+
+				<!-- Title of the game -->		
+				<h1>Dice Game</h1><hr>
+
+				<!-- Images displaying the current numbers -->	
+				<!-- Will only display if game state != first game -->	
+				<% if !@bStart %>
+					<img src="https://uchicago.s3.amazonaws.com/d0<%= @diceOnePicture %>.png" alt="some_text">
+					<img src="https://uchicago.s3.amazonaws.com/d0<%= @diceTwoPicture %>.png" alt="some_text">
+				<% end %>
+
+				<!-- State messages for user -->
+				<h4><%= @stateMessage %></h4>
+				<h4><%= @goalMessage %></h4>
+				
+				<!-- Display game instructions --> 
+				<!-- Will only display if game state != first game -->	
+				<% if @bStart %>
+					<p>Here are the rules:</p>
+					<ul>
+						<li>Roll the dice to start the game</li>
+						<li>If your first roll is a 7 or 11, you win.</li>
+						<li>If your first roll is a 2, 3 or 12, you lose.</li>
+						<li>Anything else becomes your goal. Roll your goal again before rolling a 7, and you win. Roll a 7 instead of your goal, and you lose.</li>
+					</ul>
+				<% end %>
+
+				<!-- Button with link -->
+				<p><a class="btn btn-success" href="http://localhost:3000/dicegame?state=<%= @state %>&diceOne=<%= @diceOne %>&diceTwo=<%= @diceTwo %>&goal=<%= @goal %>" role="button"><%= @buttonMessage %> &raquo;</a></p>
+
+			</div>
+		</div>
+	</body>
+</html>
